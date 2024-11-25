@@ -2,7 +2,6 @@ services:
   cloudflared:
     image: "cloudflare/cloudflared:latest"
     container_name: cloudflared
-    restart: always
     command: tunnel run
     environment:
       - TUNNEL_TOKEN=${CF_TUNNEL_TOKEN}
@@ -10,7 +9,6 @@ services:
 
   sub2sing:
     image: nite07/sub2sing-box
-    restart: always
     container_name: sub2sing
     ports:
       - "4000:8080"
