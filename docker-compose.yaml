@@ -26,4 +26,6 @@ services:
       - DB_HOST=${ALIST_DB_HOST}
       - DB_USER=${ALIST_DB_USER}
       - DB_PASS=${ALIST_DB_PASS}
+      - DB_NAME=${ALIST_DB_NAME}
+      - DB_SSL_MODE=require
     restart: unless-stopped
