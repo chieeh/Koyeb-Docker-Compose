@@ -13,3 +13,20 @@ services:
     ports:
       - "4000:8080"
     restart: unless-stopped
+
+  alist:
+    image: 'xhofe/alist:latest'
+    container_name: alist
+    ports:
+      - '5244:5244'
+    environment:
+      - DB_TYPE=postgres
+      - DB_HOST=${ALIST_DB_HOST}
+      - DB_USER=${ALIST_DB_USER}
+      - DB_PASS=${ALIST_DB_PASS}
+      - DB_NAME=${ALIST_DB_NAME}
+      - DB_SSL_MODE=require
+      - DB_TABLE_PREFIX:alist_
+      - DB_PORT:5432
+      - PORT:5244
+    restart: unless-stopped
