@@ -1,0 +1,32 @@
+services:
+  cloudflared:
+    image: "cloudflare/cloudflared:latest"
+    container_name: cloudflared
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=${CF_TUNNEL_TOKEN}
+    restart: unless-stopped
+
+  sub2sing:
+    image: nite07/sub2sing-box
+    container_name: sub2sing
+    ports:
+      - "4000:8080"
+    restart: unless-stopped
+
+  alist:
+    image: 'xhofe/alist:latest'
+    container_name: alist
+    ports:
+      - '5244:5244'
+    environment:
+      - DB_TYPE=postgres
+      - DB_HOST=${ALIST_DB_HOST}
+      - DB_USER=${ALIST_DB_USER}
+      - DB_PASS=${ALIST_DB_PASS}
+      - DB_NAME=${ALIST_DB_NAME}
+      - DB_SSL_MODE=prefer
+      - DB_PORT=5432
+      - PUID=0
+      - PGID=0
+      - UMASK=022
