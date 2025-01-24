@@ -12,6 +12,7 @@ services:
     container_name: alist
     ports:
       - '5244:5244'
+      - '5246:5246'
     environment:
       - DB_TYPE=postgres
       - DB_HOST=${ALIST_DB_HOST}
@@ -23,3 +24,6 @@ services:
       - PUID=0
       - PGID=0
       - UMASK=022
+      - S3_ENABLE=${ALIST_S3_ENABLE:-true}
+      - SITE_URL=${ALIST_SITE_URL}
+    restart: unless-stopped
